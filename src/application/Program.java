@@ -25,7 +25,7 @@ public class Program {
 		
 		System.out.println("Enter client data: ");
 		System.out.println("Name: ");
-		String name = sc.next();
+		String name = sc.nextLine();
 		System.out.println(name);
 		System.out.println("E-mail: ");
 		String email = sc.next();
@@ -40,9 +40,8 @@ public class Program {
 		System.out.println("Status: ");
 		String status = sc.next();
 		
-		Order o1 = new Order(moment, OrderStatus.valueOf(status));
-		o1.addClient(c1);
-		
+		Order o1 = new Order(moment, OrderStatus.valueOf(status), c1);
+
 		System.out.println("How many items to this order?");
 		int numberOfItems = sc.nextInt();
 		
@@ -56,12 +55,10 @@ public class Program {
 			System.out.println("Quantity: ");
 			int productQuantity = sc.nextInt();
 			
-			OrderItem orderItem = new OrderItem(productQuantity, productPrice);
-			
 			Product product = new Product(productName, productPrice); 
-			
-			orderItem.addProduct(product);
 
+			OrderItem orderItem = new OrderItem(productQuantity, productPrice, product);
+			
 			o1.addItem(orderItem);
 
 		}
@@ -69,7 +66,8 @@ public class Program {
 		
 		// Order summary
 		
-		
+		System.out.println();
+		System.out.println(o1);
 		
 		sc.close();
 		

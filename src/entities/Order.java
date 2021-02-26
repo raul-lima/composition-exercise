@@ -57,7 +57,7 @@ public class Order {
 	
 	
 	public Double total() {
-		double sum = 0;
+		double sum = 0.0;
 		for(OrderItem i : items) {
 			sum += i.subTotal();
 		}
@@ -69,22 +69,14 @@ public class Order {
 		sb.append("ORDER SUMMARY: \n");
 		sb.append("Order moment: " + sdf.format(moment) + "\n");
 		sb.append("Order status: " + status + "\n");
-		sb.append("Client: " + clients[0].getName);
-	}
-	
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(title + "\n");
-		sb.append(likes);
-		sb.append(" Likes - ");
-		sb.append(sdf.format(moment) + "\n");
-		sb.append(content + "\n");
-		sb.append("Comments: ");
-		for (Comment c : comments) {
-			sb.append(c.getText() + "\n");
+		sb.append("Client: " + client + "\n");
+		for(OrderItem item : items) {
+			sb.append(item + "\n");
 		}
+		sb.append("Total price: $");
+		sb.append(String.format("%.2f", total()));
 		return sb.toString();
 	}
-
+	
 
 }
